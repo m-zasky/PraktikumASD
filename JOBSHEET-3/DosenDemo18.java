@@ -38,6 +38,22 @@ public class DosenDemo18 {
             counter++;
         }
 
+        // Memanggil SEMUA method dari class DataDosen18
+        // a. Menampilkan semua data
+        DataDosen18.dataSemuaDosen(arrayOfDosen18);
+
+        // b. Menampilkan jumlah dosen per jenis kelamin
+        DataDosen18.jumlahDosenPerJenisKelamin(arrayOfDosen18);
+
+        // c. Menampilkan rata-rata usia per jenis kelamin
+        DataDosen18.rerataUsiaDosenPerJenisKelamin(arrayOfDosen18);
+
+        // d. Menampilkan info dosen paling tua
+        DataDosen18.infoDosenPalingTua(arrayOfDosen18);
+
+        // e. Menampilkan info dosen paling muda
+        DataDosen18.infoDosenPalingMuda(arrayOfDosen18);
+
         sc.close();
     }
 }
