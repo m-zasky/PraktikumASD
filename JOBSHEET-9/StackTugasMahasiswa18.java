@@ -12,12 +12,12 @@ public class StackTugasMahasiswa18 {
 
     // Method isFull
     public boolean isFull() {
-        return top == size - 1; 
+        return top == size - 1;
     }
 
     // Method isEmpty
     public boolean isEmpty() {
-        return top == -1; 
+        return top == -1;
     }
 
     // Method push
@@ -63,4 +63,20 @@ public class StackTugasMahasiswa18 {
         }
         System.out.println("");
     }
+
+    // Perbaikan soal no-4
+    public Mahasiswa18 peekBottom() {
+        if (!isEmpty()) {
+            return stack[0]; // Indeks 0 adalah data pertama yang dimasukkan (paling bawah)
+        } else {
+            System.out.println("Stack kosong!");
+            return null;
+        }
+    }
+
+    // Perbaikan soal no-5
+    public int count() {
+        return top + 1; // Karena top dimulai dari -1, maka jumlah data adalah top + 1
+    }
+
 }
