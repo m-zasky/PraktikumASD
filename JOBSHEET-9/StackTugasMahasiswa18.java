@@ -79,4 +79,23 @@ public class StackTugasMahasiswa18 {
         return top + 1; // Karena top dimulai dari -1, maka jumlah data adalah top + 1
     }
 
+    // Method KonversiDesimalKeBiner
+    public String konversiDesimalKeBiner(int nilai) {
+        StackKonversi18 stack = new StackKonversi18(); // Memanggil Stack khusus biner
+
+        // Alur kerja: Mencari sisa bagi dengan 2 dan memasukkannya ke Stack
+        while (nilai > 0) {
+            int sisa = nilai % 2;
+            stack.push(sisa);
+            nilai = nilai / 2;
+        }
+
+        String biner = "";
+        // Mengambil data dari Stack sehingga urutan biner benar
+        while (!stack.isEmpty()) {
+            biner += stack.pop();
+        }
+        return biner;
+    }
+
 }
