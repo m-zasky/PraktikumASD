@@ -40,7 +40,7 @@ public class SingleLinkedList18 {
 
     // Menambah node di posisi paling belakang
     public void addLast(Mahasiswa18 input) {
-        //pointer next bernilai null (karena akan jadi yang terakhir)
+        // pointer next bernilai null (karena akan jadi yang terakhir)
         NodeMahasiswa18 ndInput = new NodeMahasiswa18(input, null);
         if (isEmpty()) {
             head = ndInput;
@@ -86,4 +86,105 @@ public class SingleLinkedList18 {
             }
         }
     }
+
+    // ===============================================
+    // 2.2 Modifikasi Elemen pada Single Linked List
+    // ===============================================
+
+    // Mengambil dan menampilkan data mahasiswa pada indeks tertentu
+    public void getData(int index) {
+        NodeMahasiswa18 tmp = head;
+        // sampai index yang dituju
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
+        }
+        tmp.data.tampilInformasi(); // Cetak data pada indeks tersebut
+    }
+
+    // Mencari indeks node berdasarkan nama (key)
+    public int indexOf(String key) {
+        NodeMahasiswa18 tmp = head;
+        int index = 0;
+        // Terus geser selama belum ketemu dan node belum habis
+        while (tmp != null && !tmp.data.nama.equalsIgnoreCase(key)) {
+            tmp = tmp.next;
+            index++;
+        }
+        if (tmp == null) {
+            return -1; // Nama tidak ditemukan
+        } else {
+            return index; // Kembalikan posisi indeks
+        }
+    }
+
+    // Menghapus node pertama (head) dari linked list
+    public void removeFirst() {
+        if (isEmpty()) {
+            System.out.println("Linked List masih kosong, tidak dapat dihapus!");
+        } else if (head == tail) {
+            head = tail = null; // hanya ada satu node, kosongkan list
+        } else {
+            head = head.next; // geser head ke node berikutnya
+        }
+    }
+
+    // Menghapus node terakhir (tail) dari linked list
+    public void removeLast() {
+        if (isEmpty()) {
+            System.out.println("Linked List masih kosong, tidak dapat dihapus!");
+        } else if (head == tail) {
+            head = tail = null; // hanya ada satu node kosongkan list
+        } else {
+            NodeMahasiswa18 temp = head;
+            // traverse sampai satu node sebelum tail
+            while (temp.next != tail) {
+                temp = temp.next;
+            }
+            temp.next = null; // putuskan sambungan ke tail lama
+            tail = temp; // perbarui tail ke node sebelumnya
+        }
+    }
+
+    // Menghapus node berdasarkan nama (key)
+    public void remove(String key) {
+        if (isEmpty()) {
+            System.out.println("Linked List masih kosong, tidak dapat dihapus!");
+        } else {
+            NodeMahasiswa18 temp = head;
+            while (temp != null) {
+                if ((temp.data.nama.equalsIgnoreCase(key)) && (temp == head)) {
+                    // node yang dicari adalah head hapus liwat removeFirst
+                    this.removeFirst();
+                    break;
+                } else if (temp.data.nama.equalsIgnoreCase(key)) {
+                    // lewati node berikutnya (node yang cocok) dara rantai
+                    temp.next = temp.next.next;
+                    if (temp.next == null) { // Jika node terhapus adalah tail maka
+                        tail = temp; // perbarui tail
+                    }
+                    break; // hentikan loop setelah penghapusan selesai
+                }
+                temp = temp.next; // lanjut ke node berikutnya
+            }
+        }
+    }
+
+    // Menghapus node pada indeks tertentu
+    public void removeAt(int index) {
+        if (index == 0) {
+            removeFirst(); // indeks 0 = hapus node pertama
+        } else {
+            NodeMahasiswa18 temp = head;
+            // jalnkan sampai satu posisi sebelum indeks tujuan
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.next;
+            }
+            // Lewati node (indeks tujuan)
+            temp.next = temp.next.next;
+            if (temp.next == null) { // jika node terhapus adalah tail maka
+                tail = temp; // perbarui tail
+            }
+        }
+    }
+
 }
