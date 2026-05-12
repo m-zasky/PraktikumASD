@@ -26,7 +26,7 @@ public class DoubleLinkedListMain18 {
             System.out.println("\n===== MENU DOUBLE LINKED LIST =====");
             System.out.println("1. Tambah data di awal");
             System.out.println("2. Tambah data di akhir");
-            System.out.println("3. Sisipkan data di tengah (setelah NIM)");
+            System.out.println("3. Sisipkan data di tengah");
             System.out.println("4. Hapus data di awal");
             System.out.println("5. Hapus data di akhir");
             System.out.println("6. Tampilkan data");
@@ -54,11 +54,11 @@ public class DoubleLinkedListMain18 {
                     list.insertAfter(keyNim, dataBaru); // Sisip setelah NIM tertentu
                     break;
                 case 4:
-                    // list.removeFirst(); // Menghapus data pertama
-                    // break;
+                    list.removeFirst(); // Menghapus data pertama
+                    break;
                 case 5:
-                    // list.removeLast(); // Menghapus data terakhir
-                    // break;
+                    list.removeLast(); // Menghapus data terakhir
+                    break;
                 case 6:
                     list.print(); // Menampilkan seluruh isi list
                     break;
