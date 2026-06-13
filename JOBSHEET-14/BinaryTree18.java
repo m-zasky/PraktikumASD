@@ -166,4 +166,71 @@ public class BinaryTree18 {
             }
         }
     }
+
+    // 1. Menambahkan Method addRekrusif
+    public void addRekursif(Mahasiswa18 mahasiswa) {
+        root = addRekursif(root, mahasiswa);
+    }
+
+    Node18 addRekursif(Node18 current, Mahasiswa18 mahasiswa) {
+        if (current == null) {
+            return new Node18(mahasiswa); // Jika tempat kosong, buat node baru
+        }
+
+        if (mahasiswa.ipk < current.mahasiswa.ipk) {
+            current.left = addRekursif(current.left, mahasiswa);
+        } else if (mahasiswa.ipk > current.mahasiswa.ipk) {
+            current.right = addRekursif(current.right, mahasiswa);
+        }
+        
+        return current;
+    }
+
+    // 2. Tambah Method MinMax
+    public void cariMinIPK() {
+        if (isEmpty()) {
+            System.out.println("Binary tree kosong");
+            return;
+        }
+        Node18 current = root;
+        // Terus bergerak ke kiri sampai mentok
+        while (current.left != null) {
+            current = current.left;
+        }
+        System.out.println("\nMahasiswa dengan IPK Terkecil:");
+        current.mahasiswa.tampilInformasi();
+    }
+
+    public void cariMaxIPK() {
+        if (isEmpty()) {
+            System.out.println("Binary tree kosong");
+            return;
+        }
+        Node18 current = root;
+        // Terus bergerak ke kanan sampai mentok
+        while (current.right != null) {
+            current = current.right;
+        }
+        System.out.println("\nMahasiswa dengan IPK Terbesar:");
+        current.mahasiswa.tampilInformasi();
+    }
+    
+    // 3. Tambah Method IPK diatas batas tertentu
+    public void tampilMahasiswaIPKdiAtas(double ipkBatas) {
+        System.out.println("\nDaftar Mahasiswa dengan IPK > " + ipkBatas + ":");
+        tampilMahasiswaIPKdiAtas(root, ipkBatas);
+    }
+
+    void tampilMahasiswaIPKdiAtas(Node18 node, double ipkBatas) {
+        if (node != null) {
+            // Traverse InOrder supaya tampil urut dari IPK terkecil
+            tampilMahasiswaIPKdiAtas(node.left, ipkBatas);
+            
+            if (node.mahasiswa.ipk > ipkBatas) {
+                node.mahasiswa.tampilInformasi();
+            }
+            
+            tampilMahasiswaIPKdiAtas(node.right, ipkBatas);
+        }
+    }
 }
